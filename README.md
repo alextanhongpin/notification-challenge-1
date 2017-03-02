@@ -4,7 +4,7 @@ As a member of notification engineering team serving notifications to millions o
  
 The code challenge below is designed to test your basic understandings of some of these problems you may face in notification  team. 
 
-### Problem
+### Problem:
 
 You are the new member of SEEKAsia technical team, and your first task is to build a system that work as the following:
 Every 30 minutes it runs and calls github API to get the latest 5 updated repos and show this feed in Slack channel via Slack incoming webhook. 
@@ -23,8 +23,8 @@ Channel specific webhook url : https://hooks.slack.com/services/T09SRHEVC/B4CL0N
 - Github API [documentation](https://developer.github.com/v3/search/)
 
 
-### Judging criteria
+### Judging criteria:
 
-- Code Quality: how well-written and readable the code produced is, and how well-tested the critical paths in the code are.
-- Technology Choices: how programming languages, libraries and tools were chosen and how tradeoffs inherent in those choices were handled.
-- Correctness & Efficiency: An evaluation of whether the program generates correct output, and how fast and scalable the code is.
+- **Code Quality**: how well-written and readable the code produced is, and how well-tested the critical paths in the code are.
+- **Technology Choices**: how programming languages, libraries and tools were chosen and how tradeoffs inherent in those choices were handled.
+- **Correctness & Efficiency**: An evaluation of whether the program generates correct output, and how fast and scalable the code is.
