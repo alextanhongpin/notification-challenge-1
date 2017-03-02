@@ -1,5 +1,12 @@
 # Notification team Coding Challenge
 
+As a notification engineering team member you have to build processes that calls various APIs and handles the data.
+Processing data and have them ready to be consumed by other web services is another part of the challenges that you have to solve on daily basis.
+ 
+The code challenge below is designed to test your basic understandings of some of these problems you may face in notification stream team. 
+
+### Problem
+
 You are the new member of SEEKAsia technical team, and your first task is to build a system that work as the following:
 Every 30 minutes it runs and calls github API to get the latest 10 updated repos and show this feed in Slack channel via Slack incoming webhook. 
 
@@ -15,3 +22,10 @@ Channel specific webhook url : https://hooks.slack.com/services/T09SRHEVC/B4CL0N
 ### Useful Links:
 - Slack incoming webhook API [documentation](https://api.slack.com/incoming-webhooks).
 - Github API [documentation](https://developer.github.com/v3/search/)
+
+
+### Judging criteria
+
+- Code Quality: how well-written and readable the code produced is, and how well-tested the critical paths in the code are.
+- Technology Choices: how programming languages, libraries and tools were chosen and how tradeoffs inherent in those choices were handled.
+- Correctness & Efficiency: An evaluation of whether the program generates correct output, and how fast and efficient the code is.
