@@ -9,3 +9,9 @@ Few caveats :
  - You can't feed the same repo that you sent to webhook previously. 
  - The process should run every 30 minutes automatically
  - You can customize the name and icon of your Incoming Webhook in the Integration Settings section. However, you can override the displayed name by sending `"username": "new-bot-name"` in your JSON payload. You can also override the bot icon either with `"icon_url": "https://slack.com/img/icons/app-57.png"` or `"icon_emoji": ":ghost:"`.
+ 
+ 
+You can [invite](https://notification-team-challenge.herokuapp.com/) yourself to the slack channel that we have setup for testing. 
+
+Channel specific webhook url : https://hooks.slack.com/services/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
+
