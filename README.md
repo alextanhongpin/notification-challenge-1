@@ -1,5 +1,4 @@
 # Notification team Coding Challenge
-SEEK Asia notification team coding challenge.
 
 You have to build a system that calls github API for latest updated repo and feed this information to an external Slack webhook. Slack incoming webhook API [documentation](https://api.slack.com/incoming-webhooks).
 
