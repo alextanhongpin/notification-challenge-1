@@ -1,9 +1,8 @@
-# Notification team Coding Challenge
+# Notification Team Coding Challenge
 
-As a notification engineering team member you have to build processes that calls various APIs and handles the data.
-Processing data and have them ready to be consumed by other web services is another part of the challenges that you have to solve on daily basis.
+As a team member of notification engineering team serving notifications to millions of users, you have to build processes that calls various APIs and handles processing of the data to prepare it for consumption by other services.
  
-The code challenge below is designed to test your basic understandings of some of these problems you may face in notification stream team. 
+The code challenge below is designed to test your basic understandings of some of these problems you may face in notification  team. 
 
 ### Problem
 
@@ -28,4 +27,4 @@ Channel specific webhook url : https://hooks.slack.com/services/T09SRHEVC/B4CL0N
 
 - Code Quality: how well-written and readable the code produced is, and how well-tested the critical paths in the code are.
 - Technology Choices: how programming languages, libraries and tools were chosen and how tradeoffs inherent in those choices were handled.
-- Correctness & Efficiency: An evaluation of whether the program generates correct output, and how fast and efficient the code is.
+- Correctness & Efficiency: An evaluation of whether the program generates correct output, and how fast and scalable the code is.
