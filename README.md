@@ -1,16 +1,16 @@
 # Notification Team Coding Challenge
 
-As a team member of notification engineering team serving notifications to millions of users, you have to build processes that calls various APIs and handles processing of the data to prepare it for consumption by other services.
+As a member of notification engineering team serving notifications to millions of users, you have to build processes that calls various APIs and handles processing of the data to prepare it for consumption by other services.
  
 The code challenge below is designed to test your basic understandings of some of these problems you may face in notification  team. 
 
 ### Problem
 
 You are the new member of SEEKAsia technical team, and your first task is to build a system that work as the following:
-Every 30 minutes it runs and calls github API to get the latest 10 updated repos and show this feed in Slack channel via Slack incoming webhook. 
+Every 30 minutes it runs and calls github API to get the latest 5 updated repos and show this feed in Slack channel via Slack incoming webhook. 
 
 However, there are few things to consider:
- - Dublications are not allowed, you can't feed the same repo that you sent to webhook previously. 
+ - Duplications are not allowed, you can't feed the same repo that you sent to webhook previously. 
  - You need to customize the displayed name and the icon of the webhook to be showing your full name and any picture you choose.
  
  
