@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
+	// "fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -33,7 +33,7 @@ func fetchPublicRepositories() ([]Repository, error) {
 		return nil, err
 	}
 
-	return data
+	return data, nil
 }
 
 func postToSlack(channel, text, iconEmoji, username string) (bool, error) {
@@ -46,17 +46,17 @@ func postToSlack(channel, text, iconEmoji, username string) (bool, error) {
 
 	req, err := http.NewRequest("POST", incomingWebhookURL, bytes.NewBuffer(jsonStr))
 	if err != nil {
-		return nil, err
+		return false, err
 	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, err
+		return false, err
 	}
 
 	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
+	ioutil.ReadAll(resp.Body)
 
 	return true, nil
 }

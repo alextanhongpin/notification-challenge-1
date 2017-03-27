@@ -16,3 +16,8 @@ type Repository struct {
 	HTMLURL     string `json:"html_url"`
 	Description string `json:"description"`
 }
+
+// Configuration for the application
+type Configuration struct {
+	SlackWebhookURL string `json:"slack_webhook_url"`
+}
