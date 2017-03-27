@@ -1,4 +1,4 @@
-package main
+package model
 
 // Message is the payload for Slack API
 type Message struct {
