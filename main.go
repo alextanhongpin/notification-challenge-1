@@ -13,36 +13,6 @@ import (
 
 var cache map[int]bool
 
-type By func(r1, r2 *model.Attachment) bool
-
-type attachmentsSorter struct {
-	attachments []model.Attachment
-	by          func(r1, r2 *model.Attachment) bool
-}
-
-func (by By) Sort(attachments []model.Attachment) {
-	rs := &attachmentsSorter{
-		attachments: attachments,
-		by:          by,
-	}
-	sort.Sort(rs)
-}
-
-// Len is part of sort.Interface.
-func (s *attachmentsSorter) Len() int {
-	return len(s.attachments)
-}
-
-// Swap is part of sort.Interface.
-func (s *attachmentsSorter) Swap(i, j int) {
-	s.attachments[i], s.attachments[j] = s.attachments[j], s.attachments[i]
-}
-
-// Less is part of sort.Interface. It is implemented by calling the "by" closure in the sorter.
-func (s *attachmentsSorter) Less(i, j int) bool {
-	return s.by(&s.attachments[i], &s.attachments[j])
-}
-
 func main() {
 	fmt.Println("Started cron job")
 	if cache == nil {
@@ -94,12 +64,10 @@ func main() {
 		// if len(message.Attachments) == 0 {
 		// 	message.Text = "There are no updates. Grab a :taco:!"
 		// }
-		timestamp := func(r1, r2 *model.Attachment) bool {
-			return r1.Timestamp > r2.Timestamp
-		}
+
 		fmt.Println("Sending...")
 
-		By(timestamp).Sort(message.Attachments)
+		sort.Slice(message.Attachments, func(i, j int) bool { return message.Attachments[i].Timestamp > message.Attachments[j].Timestamp })
 
 		ok, err := service.PostToSlack(message)
 		if err != nil {
