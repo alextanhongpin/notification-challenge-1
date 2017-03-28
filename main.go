@@ -22,8 +22,8 @@ func main() {
 
 	c := cron.New()
 	// Run the cron job every thirty minutes
-	c.AddFunc("0 * * * * *", func() {
-		// c.AddFunc("0 */30 * * * *", func() {
+	//c.AddFunc("0 * * * * *", func() {
+	c.AddFunc("0 */30 * * * *", func() {
 		fmt.Println("Running cron job")
 
 		repos, err := service.FetchPublicRepositories()
