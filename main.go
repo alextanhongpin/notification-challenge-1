@@ -6,8 +6,9 @@ import (
 	"github.com/alextanhongpin/notification-challenge/model"
 	"github.com/alextanhongpin/notification-challenge/service"
 	"gopkg.in/robfig/cron.v2"
+	"net/http"
 	"os"
-	"os/signal"
+	// "os/signal"
 	"sort"
 )
 
@@ -21,7 +22,8 @@ func main() {
 
 	c := cron.New()
 	// Run the cron job every thirty minutes
-	c.AddFunc("0 */30 * * * *", func() {
+	c.AddFunc("0 * * * * *", func() {
+		// c.AddFunc("0 */30 * * * *", func() {
 		fmt.Println("Running cron job")
 
 		repos, err := service.FetchPublicRepositories()
@@ -41,7 +43,7 @@ func main() {
 		cache = common.UpdateCache(cache, notificationPayload, similar)
 
 		message := model.Message{
-			Channel:     "#intrvw-notification",
+			Channel:     "#general", //"#intrvw-notification",
 			Text:        "The last 5 updated repository (written in golang)",
 			Username:    "alextanhongpin",
 			IconEmoji:   ":ghost:",
@@ -86,8 +88,19 @@ func main() {
 	c.Start()
 	defer c.Stop()
 
-	// Let the process runs forever
-	a := make(chan os.Signal)
-	signal.Notify(a, os.Interrupt, os.Kill)
-	<-a
+	http.HandleFunc("/", index)
+	fmt.Println("listening...")
+	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	if err != nil {
+		panic(err)
+	}
+
+	// // Let the process runs forever
+	// a := make(chan os.Signal)
+	// signal.Notify(a, os.Interrupt, os.Kill)
+	// <-a
+}
+
+func index(res http.ResponseWriter, req *http.Request) {
+	fmt.Fprintln(res, "hello, heroku")
 }
