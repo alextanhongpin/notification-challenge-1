@@ -44,7 +44,7 @@ func main() {
 
 		message := model.Message{
 			Channel:     "#general", //"#intrvw-notification",
-			Text:        "The last 5 updated repository (written in golang)",
+			Text:        "The last 5 updated repository",
 			Username:    "alextanhongpin",
 			IconEmoji:   ":ghost:",
 			Attachments: []model.Attachment{},
