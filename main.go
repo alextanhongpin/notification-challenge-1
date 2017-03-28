@@ -41,7 +41,7 @@ func main() {
 		cache = common.UpdateCache(cache, notificationPayload, similar)
 
 		message := model.Message{
-			Channel:     "#general", //"#intrvw-notification",
+			Channel:     "#intrvw-notification",
 			Text:        "The last 5 updated repository (written in golang)",
 			Username:    "alextanhongpin",
 			IconEmoji:   ":ghost:",
