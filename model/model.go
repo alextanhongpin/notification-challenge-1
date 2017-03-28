@@ -1,5 +1,9 @@
 package model
 
+import (
+	"time"
+)
+
 // Attachment belongs to Message
 type Attachment struct {
 	Fallback   string `json:"fallback"`
@@ -15,7 +19,7 @@ type Attachment struct {
 	ThumbURL   string `json:"thumb_url"`
 	Footer     string `json:"footer"`
 	FooterIcon string `json:"footer_icon"`
-	Timestamp  int    `json:"ts"`
+	Timestamp  int64  `json:"ts"`
 }
 
 // Message is the payload for Slack API
@@ -34,14 +38,22 @@ type Owner struct {
 	Login     string `json:"login"`
 }
 
+// FetchPublicRepositoriesResponse is the response from the service
+type FetchPublicRepositoriesResponse struct {
+	TotalCount        int          `json:"total_count"`
+	IncompleteResults bool         `json:"incomplete_results"`
+	Items             []Repository `json:"items"`
+}
+
 // Repository is the schema for the Github Repository
 type Repository struct {
-	ID          int    `json:"id"`
-	Name        string `json:"name"`
-	FullName    string `json:"full_name"`
-	HTMLURL     string `json:"html_url"`
-	Description string `json:"description"`
-	Owner       Owner  `json:"owner"`
+	ID          int       `json:"id"`
+	Name        string    `json:"name"`
+	FullName    string    `json:"full_name"`
+	HTMLURL     string    `json:"html_url"`
+	Description string    `json:"description"`
+	Owner       Owner     `json:"owner"`
+	UpdatedAt   time.Time `json:"updated_at"`
 }
 
 // Configuration for the application

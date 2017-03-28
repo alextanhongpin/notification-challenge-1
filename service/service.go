@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	githubRepositoryURL string = "https://api.github.com/repositories"
+	// "https://api.github.com/repositories"
+	githubRepositoryURL string = "https://api.github.com/search/repositories?q=updated:&sort=updated&direction=desc&per_page=5"
 )
 
 var configuration = common.GetConfig()
@@ -31,7 +32,7 @@ func FetchPublicRepositories() ([]model.Repository, error) {
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
 
-	var data []model.Repository
+	var data model.FetchPublicRepositoriesResponse
 	err = json.Unmarshal(body, &data)
 
 	// Write to JSON file
@@ -42,7 +43,7 @@ func FetchPublicRepositories() ([]model.Repository, error) {
 		return nil, err
 	}
 
-	return data, nil
+	return data.Items, nil
 }
 
 // PostToSlack post a message to Slack's webhook

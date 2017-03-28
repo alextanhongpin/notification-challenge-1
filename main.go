@@ -19,26 +19,35 @@ func main() {
 	}
 
 	c := cron.New()
-	c.AddFunc("0 */1 * * * *", func() {
+	c.AddFunc("0 */2 * * * *", func() {
 		fmt.Println("Running cron job")
+
 		repos, err := service.FetchPublicRepositories()
 		if err != nil {
 			fmt.Println(err)
 		}
-		slicedRepos := repos[0:5]
+		slicedRepos := repos
+
+		if len(slicedRepos) == 0 {
+			return
+		} else if len(slicedRepos) > 5 {
+			slicedRepos = repos[0:5]
+		}
+
 		notificationPayload := common.MakeNotificationPayload(cache, slicedRepos)
 		similar := common.GetSimilarData(cache, slicedRepos)
 		cache = common.UpdateCache(cache, notificationPayload, similar)
 
 		message := model.Message{
-			Channel:     "#general",
-			Text:        "The last 5 updated repository (golang)",
+			Channel:     "#general", //"#intrvw-notification",
+			Text:        "The last 5 updated repository (written in golang)",
 			Username:    "alextanhongpin",
 			IconEmoji:   ":ghost:",
 			Attachments: []model.Attachment{},
 		}
 
 		for _, notification := range notificationPayload {
+			// fmt.Println(int(notification.UpdatedAt.UnixNano() / 1000000))
 			message.Attachments = append(message.Attachments, model.Attachment{
 				AuthorIcon: notification.Owner.AvatarURL,
 				AuthorLink: notification.Owner.URL,
@@ -46,12 +55,20 @@ func main() {
 				Title:      notification.FullName,
 				Footer:     notification.Description,
 				TitleLink:  notification.HTMLURL,
+				Timestamp:  notification.UpdatedAt.UnixNano() / 1000000,
 			})
 		}
 		if len(message.Attachments) == 0 {
 			message.Text = "There are no updates. Grab a :taco:!"
 		}
-		service.PostToSlack(message)
+		fmt.Println("Sending...")
+		ok, err := service.PostToSlack(message)
+		if err != nil {
+			panic(err)
+		}
+		if ok {
+			fmt.Println("Successfully send notification")
+		}
 
 		fmt.Println("\nnotificationPayload", notificationPayload)
 		fmt.Println("similar", similar)
