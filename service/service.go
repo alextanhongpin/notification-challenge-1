@@ -16,6 +16,7 @@ const (
 
 var configuration = common.GetConfig()
 
+// FetchPublicRepositories fetch a list of public repository
 func FetchPublicRepositories() ([]model.Repository, error) {
 	// Github API requires a user-agent :D
 	req, err := http.NewRequest("GET", githubRepositoryURL, nil)
@@ -32,6 +33,11 @@ func FetchPublicRepositories() ([]model.Repository, error) {
 
 	var data []model.Repository
 	err = json.Unmarshal(body, &data)
+
+	// Write to JSON file
+	// jsonOutput, _ := json.Marshal(data)
+	// err = ioutil.WriteFile("github_repos.json", jsonOutput, 0644)
+
 	if err != nil {
 		return nil, err
 	}
@@ -39,13 +45,10 @@ func FetchPublicRepositories() ([]model.Repository, error) {
 	return data, nil
 }
 
-func PostToSlack(slack_channel, text, iconEmoji, username string) (bool, error) {
-	jsonStr, err := json.Marshal(model.Message{
-		Channel:   slack_channel,
-		Text:      text,
-		IconEmoji: iconEmoji,
-		Username:  username,
-	})
+// PostToSlack post a message to Slack's webhook
+func PostToSlack(request interface{}) (bool, error) {
+	payload := request.(model.Message)
+	jsonStr, err := json.Marshal(payload)
 
 	req, err := http.NewRequest("POST", configuration.SlackWebhookURL, bytes.NewBuffer(jsonStr))
 	if err != nil {

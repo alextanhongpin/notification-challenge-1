@@ -1,0 +1,14 @@
+{
+  "name": "Go build for Heroku",
+  "description": "Seek Asia Notification Challenge",
+  "keywords": [
+    "notification-challenge",
+    "go",
+    "sample",
+    "example"
+  ],
+  "image": "heroku/go:1.6",
+  "mount_dir": "src/github.com/notification-challenge",
+  "website": "http://github.com/notification-challenge",
+  "repository": "http://github.com/notification-challenge"
+}

@@ -1,0 +1,12 @@
+{
+	"ImportPath": "github.com/alextanhongpin/notification-challenge",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "gopkg.in/robfig/cron.v2",
+			"Comment": "v1-11-gbe2e0b0",
+			"Rev": "be2e0b0deed5a68ffee390b4583a13aff8321535"
+		}
+	]
+}
