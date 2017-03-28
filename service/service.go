@@ -3,7 +3,6 @@ package service
 import (
 	"bytes"
 	"encoding/json"
-	// "fmt"
 	"github.com/alextanhongpin/notification-challenge/common"
 	"github.com/alextanhongpin/notification-challenge/model"
 	"io/ioutil"
@@ -11,8 +10,7 @@ import (
 )
 
 const (
-	// "https://api.github.com/repositories"
-	githubRepositoryURL string = "https://api.github.com/search/repositories?q=updated:&sort=updated&direction=desc&per_page=5"
+	githubRepositoryURL string = "https://api.github.com/search/repositories?q=stars:%3E0&sort=updated&per_page=5&direction=desc"
 )
 
 var configuration = common.GetConfig()

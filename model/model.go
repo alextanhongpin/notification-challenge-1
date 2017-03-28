@@ -54,6 +54,7 @@ type Repository struct {
 	Description string    `json:"description"`
 	Owner       Owner     `json:"owner"`
 	UpdatedAt   time.Time `json:"updated_at"`
+	PushedAt    time.Time `json:"pushed_at"`
 }
 
 // Configuration for the application
